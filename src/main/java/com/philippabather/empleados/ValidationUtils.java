@@ -85,4 +85,22 @@ public class ValidationUtils {
         }
         return day;
     }
+
+    public static int validateOption() {
+        boolean isValid = false;
+        int response = -1;
+
+        while (!isValid) {
+            try {
+                response = Integer.parseInt(sc.nextLine());
+                if (response == 0 || response == 1) {
+                    isValid = true;
+                }
+            } catch (NumberFormatException nfe) {
+                System.out.println("Error: input 1 to modify details or 0 to continue");
+            }
+        }
+        return response;
+    }
+
 }
