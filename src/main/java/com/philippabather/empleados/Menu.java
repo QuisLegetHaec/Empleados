@@ -1,10 +1,11 @@
 package com.philippabather.empleados;
 
+import domain.DateComparator;
 import domain.Employee;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import static com.philippabather.empleados.ValidationUtils.*;
@@ -16,7 +17,7 @@ public class Menu {
 
     //declare instance fields
     private static final Scanner sc = new Scanner(System.in);
-    private ArrayList<Employee> employees = new ArrayList<Employee>();
+    private final ArrayList<Employee> employees = new ArrayList<>();
 
     public void executeMenu() {
         boolean exit = false;
@@ -96,15 +97,15 @@ public class Menu {
 
     /**
      * Inserts (adds) an employee object into the ArrayList<Employee>
+     * @return empl Employee object
      */
     private Employee insertEmployee() {
         System.out.println("Enter employee's name: ");
         String name = sc.nextLine();
         System.out.println("Enter employee's salary: ");
-        Double salary = validateDouble();
+        double salary = validateDouble();
         LocalDate startDate = validateDate();
-        Employee emp = new Employee(name, salary, startDate);
-        return emp;
+        return new Employee(name, salary, startDate);
     }
 
     /**
@@ -174,18 +175,23 @@ public class Menu {
 
     private void avgDuration() {}
 
-    private void longestServingEmployee() {}
+    private void longestServingEmployee() {
+        Collections.sort(employees, new DateComparator());
+        System.out.println("The longest serving employee is:\n" + employees.get(0));
+    }
 
     /**
      * Print to console the employee object whose salary is the lowest.
      */
     private void lowestPaidEmployee() {
+        Collections.sort(employees);
 
+        System.out.println("The employee with the lowest salary is:\n" + employees.get(0));
     }
 
     /**
      * Exits programme and notify user
-     * @return boolean
+     * @return exit boolean
      */
     private boolean exitProg() {
         boolean exit = true;
