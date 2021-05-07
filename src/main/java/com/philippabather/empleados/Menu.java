@@ -79,6 +79,9 @@ public class Menu {
         } while (!exit);
     }
 
+    /**
+     * Adds an employee object to the ArrayList.
+     */
     private void addEmployees() {
         System.out.println("How many employees would you like to add to the system?");
         System.out.println("Enter a number: ");
@@ -86,35 +89,99 @@ public class Menu {
 
         for (int i = 0; i < num; i++) {
             System.out.println("Employee " + (i + 1) + " to be added");
-            System.out.println("Enter employee's name: ");
-            String name = sc.nextLine();
-            System.out.println("Enter employee's salary: ");
-            Double salary = validateDouble();
-            LocalDate startDate = validateDate();
-            Employee emp = new Employee(name, salary, startDate);
+            Employee emp = insertEmployee();
             employees.add(emp);
         }
     }
 
+    /**
+     * Inserts (adds) an employee object into the ArrayList<Employee>
+     */
+    private Employee insertEmployee() {
+        System.out.println("Enter employee's name: ");
+        String name = sc.nextLine();
+        System.out.println("Enter employee's salary: ");
+        Double salary = validateDouble();
+        LocalDate startDate = validateDate();
+        Employee emp = new Employee(name, salary, startDate);
+        return emp;
+    }
+
+    /**
+     * Prints to console a list of the employees withint the ArrayList<Employee>
+     */
     private void showEmployees() {
         for (Employee emp : employees) {
             System.out.println(emp);
         }
     }
 
-    private void deleteEmployee() {}
+    /**
+     * Delete employee according the name specified by the user
+     */
+    private void deleteEmployee() {
+        int counter = 0;
+        System.out.println("Enter the name of the person you wish to delete: ");
+        String name = sc.nextLine();
 
-    private void checkListPos() {}
+        for (Employee empl: employees) {
+            if (empl.getName().equals(name)) {
+                employees.remove(empl);
+                System.out.println("Employee " + name + " deleted");
+                counter++;
+                break;
+            }
+        }
+
+        if (counter == 0) {
+            System.out.println("No employees matched this name.");
+        }
+    }
+
+    /**
+     * Print to console the employee object at the user specified index provided within bounds.
+     */
+    private void checkListPos() {
+        System.out.println("Enter index you wish to check: ");
+        int index = validateInt();
+
+        if (employees.size() < index) {
+            System.out.println("The index does not exist.");
+        } else {
+            System.out.println(employees.get(index));
+        }
+    }
 
     private void modifyEmployee() {}
 
-    private void insertSpecPos() {}
+    /**
+     * Add an employee object to the ArrayList<Employee> at the user specified index position provided it is within
+     * bounds.
+     */
+    private void insertSpecPos() {
+        int arrSize = employees.size();
+
+        System.out.println("At what index position do you want to insert the new employee (between 0 and " + (arrSize - 1) + "): ");
+        int indexPos = validateInt();
+
+        if (indexPos >= 0 && indexPos <= arrSize) {
+            Employee emp = insertEmployee();
+            employees.add(indexPos, emp);
+        } else {
+            System.out.println("The index does not exist.");
+        }
+    }
 
     private void avgDuration() {}
 
     private void longestServingEmployee() {}
 
-    private void lowestPaidEmployee() {}
+    /**
+     * Print to console the employee object whose salary is the lowest.
+     */
+    private void lowestPaidEmployee() {
+
+    }
 
     /**
      * Exits programme and notify user
