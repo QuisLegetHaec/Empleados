@@ -1,5 +1,7 @@
 package domain;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,12 +13,11 @@ public class Employee {
     //declare instance variables
     private String name;
     private double salary;
-    private Date startDate;
-    private ArrayList<Employee> employees;
+    private LocalDate startDate;
 
     //constructor
 
-    public Employee(String name, double salary, Date startDate) {
+    public Employee(String name, double salary, LocalDate startDate) {
         this.name = name;
         this.salary = salary;
         this.startDate = startDate;
@@ -40,11 +41,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
