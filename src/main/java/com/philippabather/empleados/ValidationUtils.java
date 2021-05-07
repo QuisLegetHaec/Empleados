@@ -7,6 +7,10 @@ public class ValidationUtils {
     //declare instance fields
     private static Scanner sc = new Scanner(System.in);
 
+    /**
+     * Validates user menu option input.
+     * @return int reflecting user's choice
+     */
     public static int validateInt() {
         boolean isValid = false;
         int response = -1;

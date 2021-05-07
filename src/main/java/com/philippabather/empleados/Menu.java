@@ -36,30 +36,32 @@ public class Menu {
 
             switch (option) {
                 case 1:
+                    addEmployees();
+                case 2:
                     showEmployees();
                     break;
-                case 2:
+                case 4:
                     deleteEmployee();
                     break;
-                case 3:
+                case 4:
                     checkListPos();
                     break;
-                case 4:
+                case 5:
                     modifyEmployee();
                     break;
-                case 5:
+                case 6:
                     insertSpecPos();
                     break;
-                case 6:
+                case 7:
                     avgDuration();
                     break;
-                case 7:
+                case 8:
                     longestServingEmployee();
                     break;
-                case 8:
+                case 9:
                     lowestPaidEmployee();
                     break;
-                case 9:
+                case 10:
                     exit = exitProg();
                     break;
                 default:
